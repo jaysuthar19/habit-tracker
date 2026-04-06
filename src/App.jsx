@@ -15,7 +15,7 @@ function App() {
 
   // ✅ REGISTER
   const registerUser = async () => {
-    const res = await fetch("http://localhost:5000/api/auth/register", {
+    const res = await fetch("https://habit-tracker-2-b3ji.onrender.com/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -32,7 +32,7 @@ function App() {
 
   // ✅ LOGIN
   const loginUser = async () => {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch("https://habit-tracker-2-b3ji.onrender.com/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -56,7 +56,7 @@ function App() {
 
     const fetchHabits = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/habits", {
+        const res = await fetch("https://habit-tracker-2-b3ji.onrender.com/api/habits", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -82,7 +82,7 @@ function App() {
   const addHabit = async () => {
     if (!habit.trim()) return;
 
-    const res = await fetch("http://localhost:5000/api/habits", {
+    const res = await fetch("https://habit-tracker-2-b3ji.onrender.com/api/habits", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,7 +105,7 @@ function App() {
   // ✅ DONE BUTTON (STREAK)
   const markDone = async (id) => {
     const res = await fetch(
-      `http://localhost:5000/api/habits/${id}/done`,
+      `https://habit-tracker-2-b3ji.onrender.com/api/habits/${id}/done`,
       {
         method: "PUT",
         headers: {
