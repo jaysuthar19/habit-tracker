@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-btn {
+  background: #22c55e;
+  color: white;
+}
+
+.done-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.streak {
+  font-size: 14px;
+  opacity: 0.8;
+}
+.react-calendar-heatmap .color-empty {
+  fill: #1e293b;
+}
+
+.react-calendar-heatmap .color-scale-1 {
+  fill: #22c55e;
+}
+
+.react-calendar-heatmap .color-scale-2 {
+  fill: #16a34a;
+}
+
+.react-calendar-heatmap .color-scale-3 {
+  fill: #15803d;
+}
