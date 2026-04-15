@@ -1,45 +1,113 @@
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #0f172a;
-  color: white;
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ROOT */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+  --bg: #f1f1f1;
+  --card: #ffffff;
+  --text: #333;
+  --muted: #777;
+  --border: #e5e5e5;
 }
 
-.container {
-  max-width: 600px;
-  margin: auto;
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+header .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  color: var(--primary);
+}
+
+/* MAIN WRAPPER */
+.pages {
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 20px;
+/* GRID LAYOUT */
+.home {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 25px;
+  align-items: start;
 }
 
-.input-group {
+/* LEFT LIST */
+.home > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  border-radius: 6px;
+  padding: 15px;
+  border: 1px solid var(--border);
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.04);
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  color: var(--primary);
+}
+
+/* STREAK */
+.streak {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ACTIONS */
+.actions {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
-.input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-}
-
+/* BUTTONS */
 .button {
-  padding: 10px 15px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 4px;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .add-btn {
-  background: #22c55e;
+  background: var(--primary);
   color: white;
 }
 
@@ -49,44 +117,52 @@ body {
 }
 
 .delete-btn {
-  background: #ef4444;
+  background: var(--error);
   color: white;
 }
 
-.card {
-  background: #1e293b;
+/* ADD CARD */
+.add-card {
+  background: var(--card);
   padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.card h3 {
-  margin: 0 0 10px 0;
-}
-
-.actions {
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  height: fit-content;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-card h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--primary);
+}
+
+/* INPUT */
+.input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+/* EMPTY STATE */
+.empty {
+  text-align: center;
+  color: var(--muted);
   margin-top: 10px;
 }
 
-.streak {
-  font-size: 14px;
-  opacity: 0.8;
+/* HEATMAP FIX */
+.react-calendar-heatmap {
+  margin-top: 10px;
 }
+
 .react-calendar-heatmap .color-empty {
-  fill: #1e293b;
+  fill: #eee;
 }
 
 .react-calendar-heatmap .color-scale-1 {
-  fill: #22c55e;
-}
-
-.react-calendar-heatmap .color-scale-2 {
-  fill: #16a34a;
-}
-
-.react-calendar-heatmap .color-scale-3 {
-  fill: #15803d;
+  fill: var(--primary);
 }

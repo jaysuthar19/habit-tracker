@@ -126,6 +126,19 @@ function App() {
     );
   };
 
+  const deleteHabit = async (id) => {
+  const token = localStorage.getItem("token");
+
+  await fetch(`${API_URL}/api/habits/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  setHabits(habits.filter((h) => h._id !== id));
+};
+
   // ✅ LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
@@ -133,97 +146,94 @@ function App() {
     setHabits([]);
   };
 
+  const greeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Morning";
+  if (hour < 18) return "Afternoon";
+  return "Evening";
+};
+
   return (
-  <div className="container">
-    <h1 className="title">🔥 Habit Tracker</h1>
+  <div>
+  {/* HEADER */}
+  <header>
+    <div className="container">
+      <h1>🔥 Habit Tracker</h1>
+      <button className="button" onClick={logout}>
+        Logout
+      </button>
+    </div>
+  </header>
 
-    {error && <p style={{ color: "red" }}>{error}</p>}
+  {/* MAIN */}
+  <div className="pages">
+    <div className="home">
 
-    {!token ? (
-      <>
-        <div className="input-group">
-          <input
-            className="input"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className="input-group">
-          <input
-            className="input"
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        <div className="input-group">
-          <button className="button add-btn" onClick={registerUser}>
-            Register
-          </button>
-          <button className="button done-btn" onClick={loginUser}>
-            Login
-          </button>
-        </div>
-      </>
-    ) : (
-      <>
-        <button className="button delete-btn" onClick={logout}>
-          Logout
-        </button>
-
-        {/* ADD HABIT */}
-        <div className="input-group">
-          <input
-            className="input"
-            placeholder="New Habit..."
-            value={habit}
-            onChange={(e) => setHabit(e.target.value)}
-          />
-          <button className="button add-btn" onClick={addHabit}>
-            Add
-          </button>
-        </div>
-
-        {/* HABITS */}
-        {Array.isArray(habits) && habits.length > 0 ? (
-          habits.map((h) => (
-            <div key={h._id} className="card">
-              <h3>{h.title}</h3>
-
-              <p className="streak">
-  🔥 {h.streak}
-  {h.lastCompleted === getToday() && " ✅"}
-</p>
-
-<CalendarHeatmap
-  startDate={new Date(new Date().setDate(new Date().getDate() - 90))}
-  endDate={new Date()}
-  values={h.history || []}
-  classForValue={(value) => {
-    if (!value) return "color-empty";
-    return "color-scale-" + value.count;
-  }}
-/>
-
-              <div className="actions">
-                <button
-                  className="button done-btn"
-                  onClick={() => markDone(h._id)}
-                >
-                  Done
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No habits yet</p>
+      {/* LEFT SIDE - HABITS */}
+      <div>
+        {habits.length === 0 && (
+          <p className="empty">No habits yet 😴</p>
         )}
-      </>
-    )}
+
+        {habits.map((h) => (
+          <div key={h._id} className="card">
+            <h3>{h.title}</h3>
+
+            <p className="streak">
+              🔥 Streak: {h.streak}
+              {h.lastCompleted === getToday() && " ✅"}
+            </p>
+
+            {/* CALENDAR */}
+            <CalendarHeatmap
+              startDate={new Date(new Date().setDate(new Date().getDate() - 90))}
+              endDate={new Date()}
+              values={h.history || []}
+              classForValue={(value) => {
+                if (!value) return "color-empty";
+                return "color-scale-1";
+              }}
+            />
+
+            <div className="actions">
+              <button
+                className="button done-btn"
+                onClick={() => markDone(h._id)}
+              >
+                Done
+              </button>
+
+              <button
+                className="button delete-btn"
+                onClick={() => deleteHabit(h._id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* RIGHT SIDE - ADD HABIT */}
+      <div className="add-card">
+        <h3>Add New Habit</h3>
+
+        <input
+          className="input"
+          placeholder="Enter habit..."
+          value={habit}
+          onChange={(e) => setHabit(e.target.value)}
+        />
+
+        <button className="button add-btn" onClick={addHabit}>
+          Add Habit
+        </button>
+      </div>
+
+    </div>
   </div>
-);
-}
+</div>
+  );
+  }
 
 export default App;
