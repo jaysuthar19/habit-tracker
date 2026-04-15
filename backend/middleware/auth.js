@@ -8,14 +8,15 @@ const auth = (req, res, next) => {
       return res.status(401).json({ msg: "No token, authorization denied" });
     }
 
-    // ✅ Remove "Bearer "
+    // handle "Bearer token"
     const token = authHeader.startsWith("Bearer ")
       ? authHeader.split(" ")[1]
       : authHeader;
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = decoded.user;
+    // support both formats safely
+    req.user = decoded.user || { id: decoded.id };
 
     next();
   } catch (err) {

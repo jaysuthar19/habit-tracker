@@ -133,14 +133,14 @@ function App() {
   const res = await fetch(`${API_URL}/api/habits/${id}`, {
     method: "DELETE",
     headers: {
-      Authorization: token, // 👈 removed Bearer
+      Authorization: `Bearer ${token}`, // ✅ FIXED
     },
   });
 
   const data = await res.json();
 
   if (!res.ok) {
-    console.log(data); // 👈 see real error
+    console.log(data);
     setError(data.msg || "Delete failed");
     return;
   }
